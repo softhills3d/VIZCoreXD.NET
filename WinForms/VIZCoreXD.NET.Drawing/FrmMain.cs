@@ -484,7 +484,7 @@ namespace VIZCoreXD.NET.Sample
 
         private void btnAddModel_Click(object sender, EventArgs e)
         {
-            vizcore3d.Drawing2D.Object2D.AddModel();
+            vizcore3d.Drawing2D.Object2D.Set2DViewCreateObjectWithModel(false);
         }
 
         private void btnDeleteObj_Click(object sender, EventArgs e)
