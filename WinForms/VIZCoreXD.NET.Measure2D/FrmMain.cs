@@ -449,7 +449,7 @@ namespace VIZCoreXD.NET.Sample
         }
         #endregion
 
-        #region Drawing2D
+        #region Model
         private void btnOpen_Click(object sender, EventArgs e)
         {
             vizcore3d.Model.OpenFileDialog();
@@ -457,7 +457,7 @@ namespace VIZCoreXD.NET.Sample
 
         private void cbViewMode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!vizcore3d.Model.IsOpen()) return;
+            if (vizcore3d.Model.IsOpen() == false) return;
             string mode = cbViewMode.SelectedItem.ToString();
 
             switch (mode)
@@ -476,17 +476,34 @@ namespace VIZCoreXD.NET.Sample
                     break;
             }
         }
+        #endregion
 
+        #region Object
+        /// <summary>
+        /// 모델 추가 (카메라 View)
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
         private void btnAddModel_Click(object sender, EventArgs e)
         {
             vizcore3d.Drawing2D.Object2D.Set2DViewCreateObjectWithModel(false);
         }
 
+        /// <summary>
+        /// 모델 삭제
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
         private void btnDeleteObj_Click(object sender, EventArgs e)
         {
             vizcore3d.Drawing2D.Object2D.DeleteSelectedObjectBy2DView();
         }
 
+        /// <summary>
+        /// 초기화
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
         private void btnClearObj_Click(object sender, EventArgs e)
         {
             // 2D 도면 삭제
@@ -497,41 +514,81 @@ namespace VIZCoreXD.NET.Sample
         #endregion
 
         #region Measure
+        /// <summary>
+        /// 좌표 측정
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
         private void btnPoint_Click(object sender, EventArgs e)
         {
             vizcore3d.Drawing2D.Measure.Set2DViewCreateWithMeasurePoint();
         }
 
+        /// <summary>
+        /// 거리 측정
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
         private void btnLength_Click(object sender, EventArgs e)
         {
             vizcore3d.Drawing2D.Measure.Set2DViewCreateWithMeasureLength();
         }
 
+        /// <summary>
+        /// 기준선 거리 측정
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
         private void btnRefEdge_Click(object sender, EventArgs e)
         {
             vizcore3d.Drawing2D.Measure.Set2DViewCreateWithMeasureLengthByRefEdge();
         }
 
+        /// <summary>
+        /// X축 거리 측정
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
         private void btnXAxis_Click(object sender, EventArgs e)
         {
             vizcore3d.Drawing2D.Measure.Set2DViewCreateWithMeasureLengthByXAxis();
         }
 
+        /// <summary>
+        /// Y축 거리 측정
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
         private void btnYAxis_Click(object sender, EventArgs e)
         {
             vizcore3d.Drawing2D.Measure.Set2DViewCreateWithMeasureLengthByYAxis();
         }
 
+        /// <summary>
+        /// 실장 거리 측정
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
         private void btnCurve_Click(object sender, EventArgs e)
         {
             vizcore3d.Drawing2D.Measure.Set2DViewCreateWithMeasureLengthByCurve();
         }
 
+        /// <summary>
+        /// 거리 측정 (괄호 포함)
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
         private void btnBracket_Click(object sender, EventArgs e)
         {
             vizcore3d.Drawing2D.Measure.Set2DViewCreateWithMeasureLengthWithBracket();
         }
 
+        /// <summary>
+        /// 교차점 측정
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
         private void btnCross_Click(object sender, EventArgs e)
         {
             vizcore3d.Drawing2D.Measure.Set2DViewCreateWithMeasureCrossPoint();

@@ -451,7 +451,7 @@ namespace VIZCoreXD.NET.Sample
         }
         #endregion
 
-        #region Drawing2D
+        #region Model
         private void btnOpen_Click(object sender, EventArgs e)
         {
             vizcore3d.Model.OpenFileDialog();
@@ -478,17 +478,34 @@ namespace VIZCoreXD.NET.Sample
                     break;
             }
         }
+        #endregion
 
+        #region Object
+        /// <summary>
+        /// 모델 추가 (카메라 View)
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
         private void btnAddModel_Click(object sender, EventArgs e)
         {
             vizcore3d.Drawing2D.Object2D.Set2DViewCreateObjectWithModel(false);
         }
 
+        /// <summary>
+        /// 모델 삭제
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
         private void btnDeleteObj_Click(object sender, EventArgs e)
         {
             vizcore3d.Drawing2D.Object2D.DeleteSelectedObjectBy2DView();
         }
 
+        /// <summary>
+        /// 초기화
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
         private void btnClearObj_Click(object sender, EventArgs e)
         {
             // 2D 도면 삭제

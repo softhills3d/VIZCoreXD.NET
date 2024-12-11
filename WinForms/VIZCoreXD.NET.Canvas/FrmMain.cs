@@ -449,6 +449,7 @@ namespace VIZCoreXD.NET.VIEW
         }
         #endregion
 
+        #region Model
         private void btnOpen_Click(object sender, EventArgs e)
         {
             vizcore3d.Model.OpenFileDialog();
@@ -456,7 +457,7 @@ namespace VIZCoreXD.NET.VIEW
 
         private void cbViewMode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (vizcore3d.Model.IsOpen() == false) return; 
+            if (vizcore3d.Model.IsOpen() == false) return;
             string mode = cbViewMode.SelectedItem.ToString();
 
             switch (mode)
@@ -474,8 +475,49 @@ namespace VIZCoreXD.NET.VIEW
                     vizcore3d.ViewMode = VIZCore3D.NET.Data.ViewKind.Model3D;
                     break;
             }
+        }
+        #endregion
 
-            setSelectedIndexCheckBox();
+        #region Object
+        /// <summary>
+        /// 모델 추가 (카메라 View)
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
+        private void btnAddObject_Click(object sender, EventArgs e)
+        {
+            vizcore3d.Drawing2D.Object2D.Set2DViewCreateObjectWithModel(false);
+        }
+
+        /// <summary>
+        /// 모델 삭제
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
+        private void btnDeleteObj_Click(object sender, EventArgs e)
+        {
+            vizcore3d.Drawing2D.Object2D.DeleteSelectedObjectBy2DView();
+        }
+
+        /// <summary>
+        /// 초기화
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
+        private void btnClearObj_Click(object sender, EventArgs e)
+        {
+            // 2D 도면 삭제
+            vizcore3d.Drawing2D.Object2D.DeleteAllObjectBy2DView();
+            // 2D 도면 외 개체 삭제
+            vizcore3d.Drawing2D.Object2D.DeleteAllNonObjectBy2DView();
+        }
+        #endregion
+
+        #region Canvas
+        private void cbCanvasIndex_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idx = cbCanvasIndex.SelectedIndex;
+            vizcore3d.Drawing2D.View.SetSelectCanvasBy2DView(idx);
         }
 
         private void setSelectedIndexCheckBox()
@@ -499,37 +541,22 @@ namespace VIZCoreXD.NET.VIEW
             }
         }
 
-        private void cbCanvasIndex_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int idx = cbCanvasIndex.SelectedIndex;
-            vizcore3d.Drawing2D.View.SetSelectCanvasBy2DView(idx);
-        }
-
-        #region Drawing2D
-        private void btnAddObject_Click(object sender, EventArgs e)
-        {
-            vizcore3d.Drawing2D.Object2D.Set2DViewCreateObjectWithModel(false);
-        }
-
-        private void btnDeleteObj_Click(object sender, EventArgs e)
-        {
-            vizcore3d.Drawing2D.Object2D.DeleteSelectedObjectBy2DView();
-        }
-
-        private void btnClearObj_Click(object sender, EventArgs e)
-        {
-            // 2D 도면 삭제
-            vizcore3d.Drawing2D.Object2D.DeleteAllObjectBy2DView();
-            // 2D 도면 외 개체 삭제
-            vizcore3d.Drawing2D.Object2D.DeleteAllNonObjectBy2DView();
-        }
-
+        /// <summary>
+        /// 캔버스 추가
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
         private void btnCanvasAdd_Click(object sender, EventArgs e)
         {
             int id = vizcore3d.Drawing2D.View.AddCanvasBy2DView();
             setSelectedIndexCheckBox();
         }
 
+        /// <summary>
+        /// 캔버스 삭제
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
         private void btnCanvasRemove_Click(object sender, EventArgs e)
         {
             int idx = vizcore3d.Drawing2D.View.GetSelectCanvasBy2DView();
@@ -537,14 +564,22 @@ namespace VIZCoreXD.NET.VIEW
             setSelectedIndexCheckBox();
         }
 
+        /// <summary>
+        /// 2D View 화면 초기화
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
         private void btnCanvasFit_Click(object sender, EventArgs e)
         {
             int idx = vizcore3d.Drawing2D.View.GetSelectCanvasBy2DView();
             vizcore3d.Drawing2D.View.SetCanvasResetViewPos(idx);
         }
 
-        #endregion
-
+        /// <summary>
+        /// 배경 반전 설정
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
         private void btnCanvasBackgoundReverse_Click(object sender, EventArgs e)
         {
             bool enable = vizcore3d.Drawing2D.View.Get2DViewBackgroundReverse();
@@ -554,13 +589,14 @@ namespace VIZCoreXD.NET.VIEW
         /// <summary>
         /// Canvas Size
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
         private void btnCanvasSize_Click(object sender, EventArgs e)
         {
             int canvasWidth = Convert.ToInt32(txtWidth.Text);
             int canvasHeight = Convert.ToInt32(txtHeight.Text);
             vizcore3d.Drawing2D.View.SetCanvasSize(canvasWidth, canvasHeight);
         }
+        #endregion
     }
 }
