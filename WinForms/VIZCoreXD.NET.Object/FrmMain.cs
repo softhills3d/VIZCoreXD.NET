@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using VIZCore3D.NET.Data;
+using VIZCore3D.NET.Dialogs;
 
 namespace VIZCoreXD.NET.Sample
 {
@@ -451,7 +451,7 @@ namespace VIZCoreXD.NET.Sample
         }
         #endregion
 
-        #region Drawing2D
+        #region Model
         private void btnOpen_Click(object sender, EventArgs e)
         {
             vizcore3d.Model.OpenFileDialog();
@@ -478,39 +478,117 @@ namespace VIZCoreXD.NET.Sample
                     break;
             }
         }
+        #endregion
 
+        #region Object
+        /// <summary>
+        /// 모델 추가 (카메라 View)
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
         private void btnAddModel_Click(object sender, EventArgs e)
         {
             vizcore3d.Drawing2D.Object2D.Set2DViewCreateObjectWithModel(false);
         }
 
+        /// <summary>
+        /// 모델 삭제
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
         private void btnDeleteObj_Click(object sender, EventArgs e)
         {
             vizcore3d.Drawing2D.Object2D.DeleteSelectedObjectBy2DView();
         }
 
+        /// <summary>
+        /// 초기화
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
         private void btnClearObj_Click(object sender, EventArgs e)
         {
             // 2D 도면 삭제
             vizcore3d.Drawing2D.Object2D.DeleteAllObjectBy2DView();
             // 2D 도면 외 개체 삭제
             vizcore3d.Drawing2D.Object2D.DeleteAllNonObjectBy2DView();
-
         }
         #endregion
 
+        #region Section (View 생성 시 필요)
+        /// <summary>
+        /// 단면 생성 (Selection View 추가 시 필요)
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
+        private void btnAddSelection_Click(object sender, EventArgs e)
+        {
+            if (vizcore3d.Model.IsOpen() == false) return;
+
+            vizcore3d.Section.Add(false, true);
+        }
+
+        /// <summary>
+        /// 선택 단면 생성 (Detail View 추가 시 필요)
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
+        private void btnAddPartSection_Click(object sender, EventArgs e)
+        {
+            if (vizcore3d.Model.IsOpen() == false) return;
+
+            vizcore3d.Section.Add(true);
+        }
+        #endregion
+
+        #region View
+        /// <summary>
+        /// 모델 단면 View
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
+        private void btnSelection_Click(object sender, EventArgs e)
+        {
+            vizcore3d.Drawing2D.Object2D.Set2DViewCreateObjectWithSection();
+        }
+
+        /// <summary>
+        /// ISO View
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
+        private void btnISO_Click(object sender, EventArgs e)
+        {
+            vizcore3d.Drawing2D.Object2D.Set2DViewCreateObjectWithModel(true);
+        }
+
+        /// <summary>
+        /// Detail View
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
+        private void btnDetail_Click(object sender, EventArgs e)
+        {
+            vizcore3d.Drawing2D.Object2D.Set2DViewCreateObjectWithDetailView();
+        }
+        #endregion
 
         #region Edit
         /// <summary>
         /// Mirror
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
         private void btnMirror_Click(object sender, EventArgs e)
         {
             vizcore3d.Drawing2D.Object2D.SetSelected3DMirrorBy2DView();
         }
 
+        /// <summary>
+        /// 선체 내부제 표현 뷰
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
         private void btnSamePosition_Click(object sender, EventArgs e)
         {
             vizcore3d.Drawing2D.Object2D.Set2DViewMoveWithMeasureModelSamePosition();
@@ -520,8 +598,8 @@ namespace VIZCoreXD.NET.Sample
         /// Move With Measure Model Offset Move
         /// 모델 이동 (처음 선택한 지점을 그 다음 선택한 지점으로 이동 시켜줌)
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
         private void btnOffsetMove_Click(object sender, EventArgs e)
         {
             vizcore3d.Drawing2D.Object2D.Set2DViewMoveWithMeasureModelOffsetMove();
@@ -531,11 +609,62 @@ namespace VIZCoreXD.NET.Sample
         /// Delete With Measure Model Edge
         /// 드래그한 모델 영역을 제외한 나머지 영역 삭제
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
         private void btnDeleteWithModelEdge_Click(object sender, EventArgs e)
         {
             vizcore3d.Drawing2D.Object2D.Set2DViewDeleteWithMeasureModelEdge();
+        }
+
+        /// <summary>
+        /// 개체 회전
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
+        private void btnSelectedModelRotate_Click(object sender, EventArgs e)
+        {
+            Rotate2DObjectDialog dlg = new Rotate2DObjectDialog();
+            if (dlg.ShowDialog() != DialogResult.OK) return;
+
+            vizcore3d.Drawing2D.Object2D.SetSelected3DRotateAngleBy2DView(dlg.TransformAngle);
+        }
+
+        /// <summary>
+        /// 개체 크기
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
+        private void btnSelectedModelRescale_Click(object sender, EventArgs e)
+        {
+            RescaleObjectDialog dlg = new RescaleObjectDialog();
+
+            float entityScale = vizcore3d.Drawing2D.Object2D.GetSelectedObjectScaleBy2DView();
+            dlg.EntityScale = 1.0f / entityScale;
+
+            if (dlg.ShowDialog() != DialogResult.OK) return;
+            if (dlg.EntityScale <= 0) return;
+
+            int objectID = vizcore3d.Drawing2D.Object2D.GetCurrentWork3DObjectBy2DView();
+
+
+            if (objectID <= 0)
+            {
+                MessageBox.Show("오브젝트를 선택해야 합니다.", "VIZCoreXD.NET", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            float num = 1.0f / dlg.EntityScale;
+            vizcore3d.Drawing2D.Object2D.RescaleObjectBy2DView(objectID, num);
+        }
+
+        /// <summary>
+        /// 개체 라인 수정
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
+        private void btnEdgeExpand_Click(object sender, EventArgs e)
+        {
+            vizcore3d.Drawing2D.Measure.Set2DViewCreateWithMeasureModelEdgeExpand();
         }
         #endregion
     }

@@ -30,7 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnISO = new System.Windows.Forms.Button();
+            this.btnDetail = new System.Windows.Forms.Button();
+            this.btnSelection = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnEdgeExpand = new System.Windows.Forms.Button();
+            this.btnSelectedModelRescale = new System.Windows.Forms.Button();
+            this.btnSelectedModelRotate = new System.Windows.Forms.Button();
             this.btnDeleteWithModelEdge = new System.Windows.Forms.Button();
             this.btnOffsetMove = new System.Windows.Forms.Button();
             this.btnSamePosition = new System.Windows.Forms.Button();
@@ -43,12 +50,17 @@
             this.cbViewMode = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnOpen = new System.Windows.Forms.Button();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btnAddPartSection = new System.Windows.Forms.Button();
+            this.btnAddSelection = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -60,6 +72,8 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.groupBox5);
+            this.splitContainer1.Panel1.Controls.Add(this.groupBox4);
             this.splitContainer1.Panel1.Controls.Add(this.groupBox3);
             this.splitContainer1.Panel1.Controls.Add(this.groupBox2);
             this.splitContainer1.Panel1.Controls.Add(this.groupBox1);
@@ -67,18 +81,93 @@
             this.splitContainer1.SplitterDistance = 300;
             this.splitContainer1.TabIndex = 0;
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.btnISO);
+            this.groupBox4.Controls.Add(this.btnDetail);
+            this.groupBox4.Controls.Add(this.btnSelection);
+            this.groupBox4.Location = new System.Drawing.Point(12, 207);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(277, 56);
+            this.groupBox4.TabIndex = 5;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "View";
+            // 
+            // btnISO
+            // 
+            this.btnISO.Location = new System.Drawing.Point(100, 20);
+            this.btnISO.Name = "btnISO";
+            this.btnISO.Size = new System.Drawing.Size(75, 23);
+            this.btnISO.TabIndex = 2;
+            this.btnISO.Text = "ISO";
+            this.btnISO.UseVisualStyleBackColor = true;
+            this.btnISO.Click += new System.EventHandler(this.btnISO_Click);
+            // 
+            // btnDetail
+            // 
+            this.btnDetail.Location = new System.Drawing.Point(195, 20);
+            this.btnDetail.Name = "btnDetail";
+            this.btnDetail.Size = new System.Drawing.Size(75, 23);
+            this.btnDetail.TabIndex = 1;
+            this.btnDetail.Text = "Detail";
+            this.btnDetail.UseVisualStyleBackColor = true;
+            this.btnDetail.Click += new System.EventHandler(this.btnDetail_Click);
+            // 
+            // btnSelection
+            // 
+            this.btnSelection.Location = new System.Drawing.Point(5, 20);
+            this.btnSelection.Name = "btnSelection";
+            this.btnSelection.Size = new System.Drawing.Size(75, 23);
+            this.btnSelection.TabIndex = 0;
+            this.btnSelection.Text = "Selection";
+            this.btnSelection.UseVisualStyleBackColor = true;
+            this.btnSelection.Click += new System.EventHandler(this.btnSelection_Click);
+            // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnEdgeExpand);
+            this.groupBox3.Controls.Add(this.btnSelectedModelRescale);
+            this.groupBox3.Controls.Add(this.btnSelectedModelRotate);
             this.groupBox3.Controls.Add(this.btnDeleteWithModelEdge);
             this.groupBox3.Controls.Add(this.btnOffsetMove);
             this.groupBox3.Controls.Add(this.btnSamePosition);
             this.groupBox3.Controls.Add(this.btnMirror);
-            this.groupBox3.Location = new System.Drawing.Point(12, 138);
+            this.groupBox3.Location = new System.Drawing.Point(12, 269);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(277, 141);
+            this.groupBox3.Size = new System.Drawing.Size(277, 228);
             this.groupBox3.TabIndex = 15;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Edit";
+            // 
+            // btnEdgeExpand
+            // 
+            this.btnEdgeExpand.Location = new System.Drawing.Point(6, 194);
+            this.btnEdgeExpand.Name = "btnEdgeExpand";
+            this.btnEdgeExpand.Size = new System.Drawing.Size(265, 23);
+            this.btnEdgeExpand.TabIndex = 8;
+            this.btnEdgeExpand.Text = "Measure Model Edge Expand";
+            this.btnEdgeExpand.UseVisualStyleBackColor = true;
+            this.btnEdgeExpand.Click += new System.EventHandler(this.btnEdgeExpand_Click);
+            // 
+            // btnSelectedModelRescale
+            // 
+            this.btnSelectedModelRescale.Location = new System.Drawing.Point(6, 165);
+            this.btnSelectedModelRescale.Name = "btnSelectedModelRescale";
+            this.btnSelectedModelRescale.Size = new System.Drawing.Size(265, 23);
+            this.btnSelectedModelRescale.TabIndex = 7;
+            this.btnSelectedModelRescale.Text = "Selected Model Rescale";
+            this.btnSelectedModelRescale.UseVisualStyleBackColor = true;
+            this.btnSelectedModelRescale.Click += new System.EventHandler(this.btnSelectedModelRescale_Click);
+            // 
+            // btnSelectedModelRotate
+            // 
+            this.btnSelectedModelRotate.Location = new System.Drawing.Point(6, 136);
+            this.btnSelectedModelRotate.Name = "btnSelectedModelRotate";
+            this.btnSelectedModelRotate.Size = new System.Drawing.Size(265, 23);
+            this.btnSelectedModelRotate.TabIndex = 6;
+            this.btnSelectedModelRotate.Text = "Selected Model Rotate";
+            this.btnSelectedModelRotate.UseVisualStyleBackColor = true;
+            this.btnSelectedModelRotate.Click += new System.EventHandler(this.btnSelectedModelRotate_Click);
             // 
             // btnDeleteWithModelEdge
             // 
@@ -207,6 +296,37 @@
             this.btnOpen.UseVisualStyleBackColor = true;
             this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
             // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.btnAddPartSection);
+            this.groupBox5.Controls.Add(this.btnAddSelection);
+            this.groupBox5.Location = new System.Drawing.Point(12, 145);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(277, 56);
+            this.groupBox5.TabIndex = 6;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Selection";
+            // 
+            // btnAddPartSection
+            // 
+            this.btnAddPartSection.Location = new System.Drawing.Point(149, 20);
+            this.btnAddPartSection.Name = "btnAddPartSection";
+            this.btnAddPartSection.Size = new System.Drawing.Size(122, 23);
+            this.btnAddPartSection.TabIndex = 4;
+            this.btnAddPartSection.Text = "Add Part Section";
+            this.btnAddPartSection.UseVisualStyleBackColor = true;
+            this.btnAddPartSection.Click += new System.EventHandler(this.btnAddPartSection_Click);
+            // 
+            // btnAddSelection
+            // 
+            this.btnAddSelection.Location = new System.Drawing.Point(6, 21);
+            this.btnAddSelection.Name = "btnAddSelection";
+            this.btnAddSelection.Size = new System.Drawing.Size(122, 23);
+            this.btnAddSelection.TabIndex = 3;
+            this.btnAddSelection.Text = "Add Selection";
+            this.btnAddSelection.UseVisualStyleBackColor = true;
+            this.btnAddSelection.Click += new System.EventHandler(this.btnAddSelection_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -219,10 +339,12 @@
             this.splitContainer1.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -243,6 +365,16 @@
         private System.Windows.Forms.Button btnSamePosition;
         private System.Windows.Forms.Button btnMirror;
         private System.Windows.Forms.Button btnDeleteWithModelEdge;
+        private System.Windows.Forms.Button btnEdgeExpand;
+        private System.Windows.Forms.Button btnSelectedModelRescale;
+        private System.Windows.Forms.Button btnSelectedModelRotate;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button btnISO;
+        private System.Windows.Forms.Button btnDetail;
+        private System.Windows.Forms.Button btnSelection;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Button btnAddPartSection;
+        private System.Windows.Forms.Button btnAddSelection;
     }
 }
 
