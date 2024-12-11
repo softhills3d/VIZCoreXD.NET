@@ -454,7 +454,7 @@ namespace VIZCoreXD.NET.Sample
         }
         #endregion
 
-        #region Drawing2D
+        #region Model
         private void btnOpen_Click(object sender, EventArgs e)
         {
             vizcore3d.Model.OpenFileDialog();
@@ -481,17 +481,34 @@ namespace VIZCoreXD.NET.Sample
                     break;
             }
         }
+        #endregion
 
+        #region Object
+        /// <summary>
+        /// 모델 추가 (카메라 View)
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
         private void btnAddModel_Click(object sender, EventArgs e)
         {
             vizcore3d.Drawing2D.Object2D.Set2DViewCreateObjectWithModel(false);
         }
 
+        /// <summary>
+        /// 모델 삭제
+        /// </summary>
+       /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
         private void btnDeleteObj_Click(object sender, EventArgs e)
         {
             vizcore3d.Drawing2D.Object2D.DeleteSelectedObjectBy2DView();
         }
 
+        /// <summary>
+        /// 초기화
+        /// </summary>
+       /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
         private void btnClearObj_Click(object sender, EventArgs e)
         {
             // 2D 도면 삭제
@@ -654,10 +671,10 @@ namespace VIZCoreXD.NET.Sample
         }
 
         /// <summary>
-        /// 
+        /// 개체 영역 삭제
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
         private void btnDeleteWithModelEdge_Click(object sender, EventArgs e)
         {
             vizcore3d.Drawing2D.Object2D.Set2DViewDeleteWithMeasureModelEdge();
@@ -744,6 +761,119 @@ namespace VIZCoreXD.NET.Sample
             }
         }
         #endregion
+
+        #region Style
+        /// <summary>
+        /// 선택 개체 색상 설정
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
+        private void btnColorSelected_Click(object sender, EventArgs e)
+        {
+            ColorDialog dlg = new ColorDialog();
+            if (dlg.ShowDialog() != DialogResult.OK) return;
+
+            List<Object2D> items = vizcore3d.Drawing2D.Object2D.GetObjectAllinfoBy2DView();
+
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (items[i].Select)
+                {
+                    vizcore3d.Drawing2D.Object2D.Set2DViewObjectItemColor(items[i].ID, dlg.Color);
+                }
+            }
+            vizcore3d.Drawing2D.Render();
+        }
+
+        /// <summary>
+        /// 선택 개체 라인 두께 설정
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
+        private void btnLineWidthSelsted_Click(object sender, EventArgs e)
+        {
+            LineThicknesstDialog dlg = new LineThicknesstDialog();
+            if (dlg.ShowDialog() != DialogResult.OK) return;
+
+            List<Object2D> items = vizcore3d.Drawing2D.Object2D.GetObjectAllinfoBy2DView();
+
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (items[i].Select)
+                {
+                    vizcore3d.Drawing2D.Object2D.Set2DViewObjectItemLineThickness(items[i].ID, dlg.LineThickness);
+                }
+            }
+            vizcore3d.Drawing2D.Render();
+        }
+
+        /// <summary>
+        /// 선택 개체 텍스트 사이즈 설정
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
+        private void btnTextSizeSelected_Click(object sender, EventArgs e)
+        {
+            TextSizeDialog dlg = new TextSizeDialog();
+            if (dlg.ShowDialog() != DialogResult.OK) return;
+
+            List<Object2D> items = vizcore3d.Drawing2D.Object2D.GetObjectAllinfoBy2DView();
+
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (items[i].Select)
+                {
+                    vizcore3d.Drawing2D.Object2D.Set2DViewObjectItemTextHeight(items[i].ID, dlg.TextSize);
+                }
+            }
+            vizcore3d.Drawing2D.Render();
+        }
+
+        /// <summary>
+        /// 선택 개체 라인 타입 설정
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
+        private void btnLineTypeSelected_Click(object sender, EventArgs e)
+        {
+            ObjectLineTypeDialog dlg = new ObjectLineTypeDialog();
+            if (dlg.ShowDialog() != DialogResult.OK) return;
+
+            List<Object2D> items = vizcore3d.Drawing2D.Object2D.GetObjectAllinfoBy2DView();
+
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (items[i].Select)
+                {
+                    vizcore3d.Drawing2D.Object2D.Set2DViewObjectItemLineType(items[i].ID, dlg.LineType);
+                }
+            }
+            vizcore3d.Drawing2D.Render();
+        }
+
+        /// <summary>
+        /// 선택 개체 텍스트 박스 라인 설정 (TextBox 텍스트 박스 라인 X / 설계점 텍스트 박스 라인 O)
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event Args</param>
+        private void btnTextBoxLineWidthSelected_Click(object sender, EventArgs e)
+        {
+            LineThicknesstDialog dlg = new LineThicknesstDialog();
+            if (dlg.ShowDialog() != DialogResult.OK) return;
+
+            List<Object2D> items = vizcore3d.Drawing2D.Object2D.GetObjectAllinfoBy2DView();
+
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (items[i].Select)
+                {
+                    vizcore3d.Drawing2D.Object2D.Set2DViewObjectItemTextBoxThickness(items[i].ID, dlg.LineThickness);
+                }
+            }
+            vizcore3d.Drawing2D.Render();
+        }
+        #endregion
+
 
     }
 }

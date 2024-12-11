@@ -34,6 +34,8 @@
             this.btnUnselectAll = new System.Windows.Forms.Button();
             this.btnSelectAll = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btnHideSelected = new System.Windows.Forms.Button();
+            this.btnShowSelected = new System.Windows.Forms.Button();
             this.btnHideAll = new System.Windows.Forms.Button();
             this.btnShowAll = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -53,8 +55,12 @@
             this.cbViewMode = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnOpen = new System.Windows.Forms.Button();
-            this.btnHideSelected = new System.Windows.Forms.Button();
-            this.btnShowSelected = new System.Windows.Forms.Button();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.btnLineTypeSelected = new System.Windows.Forms.Button();
+            this.btnTextSizeSelected = new System.Windows.Forms.Button();
+            this.btnLineWidthSelsted = new System.Windows.Forms.Button();
+            this.btnColorSelected = new System.Windows.Forms.Button();
+            this.btnTextBoxLineWidthSelected = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -64,6 +70,7 @@
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -75,6 +82,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.groupBox7);
             this.splitContainer1.Panel1.Controls.Add(this.groupBox6);
             this.splitContainer1.Panel1.Controls.Add(this.groupBox5);
             this.splitContainer1.Panel1.Controls.Add(this.groupBox4);
@@ -128,6 +136,26 @@
             this.groupBox5.TabIndex = 9;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Show / Hide";
+            // 
+            // btnHideSelected
+            // 
+            this.btnHideSelected.Location = new System.Drawing.Point(145, 49);
+            this.btnHideSelected.Name = "btnHideSelected";
+            this.btnHideSelected.Size = new System.Drawing.Size(126, 23);
+            this.btnHideSelected.TabIndex = 5;
+            this.btnHideSelected.Text = "Hide Selected";
+            this.btnHideSelected.UseVisualStyleBackColor = true;
+            this.btnHideSelected.Click += new System.EventHandler(this.btnHideSelected_Click);
+            // 
+            // btnShowSelected
+            // 
+            this.btnShowSelected.Location = new System.Drawing.Point(6, 49);
+            this.btnShowSelected.Name = "btnShowSelected";
+            this.btnShowSelected.Size = new System.Drawing.Size(126, 23);
+            this.btnShowSelected.TabIndex = 4;
+            this.btnShowSelected.Text = "Show Selected";
+            this.btnShowSelected.UseVisualStyleBackColor = true;
+            this.btnShowSelected.Click += new System.EventHandler(this.btnShowSelected_Click);
             // 
             // btnHideAll
             // 
@@ -328,25 +356,69 @@
             this.btnOpen.UseVisualStyleBackColor = true;
             this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
             // 
-            // btnHideSelected
+            // groupBox7
             // 
-            this.btnHideSelected.Location = new System.Drawing.Point(145, 49);
-            this.btnHideSelected.Name = "btnHideSelected";
-            this.btnHideSelected.Size = new System.Drawing.Size(126, 23);
-            this.btnHideSelected.TabIndex = 5;
-            this.btnHideSelected.Text = "Hide Selected";
-            this.btnHideSelected.UseVisualStyleBackColor = true;
-            this.btnHideSelected.Click += new System.EventHandler(this.btnHideSelected_Click);
+            this.groupBox7.Controls.Add(this.btnTextBoxLineWidthSelected);
+            this.groupBox7.Controls.Add(this.btnLineTypeSelected);
+            this.groupBox7.Controls.Add(this.btnTextSizeSelected);
+            this.groupBox7.Controls.Add(this.btnLineWidthSelsted);
+            this.groupBox7.Controls.Add(this.btnColorSelected);
+            this.groupBox7.Location = new System.Drawing.Point(12, 545);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(277, 114);
+            this.groupBox7.TabIndex = 10;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Style";
             // 
-            // btnShowSelected
+            // btnLineTypeSelected
             // 
-            this.btnShowSelected.Location = new System.Drawing.Point(6, 49);
-            this.btnShowSelected.Name = "btnShowSelected";
-            this.btnShowSelected.Size = new System.Drawing.Size(126, 23);
-            this.btnShowSelected.TabIndex = 4;
-            this.btnShowSelected.Text = "Show Selected";
-            this.btnShowSelected.UseVisualStyleBackColor = true;
-            this.btnShowSelected.Click += new System.EventHandler(this.btnShowSelected_Click);
+            this.btnLineTypeSelected.Location = new System.Drawing.Point(145, 49);
+            this.btnLineTypeSelected.Name = "btnLineTypeSelected";
+            this.btnLineTypeSelected.Size = new System.Drawing.Size(126, 23);
+            this.btnLineTypeSelected.TabIndex = 5;
+            this.btnLineTypeSelected.Text = "Line Type Selected";
+            this.btnLineTypeSelected.UseVisualStyleBackColor = true;
+            this.btnLineTypeSelected.Click += new System.EventHandler(this.btnLineTypeSelected_Click);
+            // 
+            // btnTextSizeSelected
+            // 
+            this.btnTextSizeSelected.Location = new System.Drawing.Point(6, 49);
+            this.btnTextSizeSelected.Name = "btnTextSizeSelected";
+            this.btnTextSizeSelected.Size = new System.Drawing.Size(126, 23);
+            this.btnTextSizeSelected.TabIndex = 4;
+            this.btnTextSizeSelected.Text = "Text Size Selected";
+            this.btnTextSizeSelected.UseVisualStyleBackColor = true;
+            this.btnTextSizeSelected.Click += new System.EventHandler(this.btnTextSizeSelected_Click);
+            // 
+            // btnLineWidthSelsted
+            // 
+            this.btnLineWidthSelsted.Location = new System.Drawing.Point(145, 20);
+            this.btnLineWidthSelsted.Name = "btnLineWidthSelsted";
+            this.btnLineWidthSelsted.Size = new System.Drawing.Size(126, 23);
+            this.btnLineWidthSelsted.TabIndex = 3;
+            this.btnLineWidthSelsted.Text = "Line Width Selsted";
+            this.btnLineWidthSelsted.UseVisualStyleBackColor = true;
+            this.btnLineWidthSelsted.Click += new System.EventHandler(this.btnLineWidthSelsted_Click);
+            // 
+            // btnColorSelected
+            // 
+            this.btnColorSelected.Location = new System.Drawing.Point(6, 20);
+            this.btnColorSelected.Name = "btnColorSelected";
+            this.btnColorSelected.Size = new System.Drawing.Size(126, 23);
+            this.btnColorSelected.TabIndex = 1;
+            this.btnColorSelected.Text = "Color Selected";
+            this.btnColorSelected.UseVisualStyleBackColor = true;
+            this.btnColorSelected.Click += new System.EventHandler(this.btnColorSelected_Click);
+            // 
+            // btnTextBoxLineWidthSelected
+            // 
+            this.btnTextBoxLineWidthSelected.Location = new System.Drawing.Point(6, 78);
+            this.btnTextBoxLineWidthSelected.Name = "btnTextBoxLineWidthSelected";
+            this.btnTextBoxLineWidthSelected.Size = new System.Drawing.Size(265, 23);
+            this.btnTextBoxLineWidthSelected.TabIndex = 6;
+            this.btnTextBoxLineWidthSelected.Text = "TextBox Line Width Selected";
+            this.btnTextBoxLineWidthSelected.UseVisualStyleBackColor = true;
+            this.btnTextBoxLineWidthSelected.Click += new System.EventHandler(this.btnTextBoxLineWidthSelected_Click);
             // 
             // FrmMain
             // 
@@ -368,6 +440,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -400,6 +473,12 @@
         private System.Windows.Forms.Button btnSelectAll;
         private System.Windows.Forms.Button btnHideSelected;
         private System.Windows.Forms.Button btnShowSelected;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Button btnLineTypeSelected;
+        private System.Windows.Forms.Button btnTextSizeSelected;
+        private System.Windows.Forms.Button btnLineWidthSelsted;
+        private System.Windows.Forms.Button btnColorSelected;
+        private System.Windows.Forms.Button btnTextBoxLineWidthSelected;
     }
 }
 
